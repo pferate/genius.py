@@ -4,6 +4,8 @@ A Python port of [Tim Roger's RapGenius RubyGem](https://github.com/timrogers/ra
 
 Much thanks go out to Tim Roger's and other contributors of the Gem for reverse-engineering the API used by the Genius iPhone App.
 
+**It's really messy, and doesn't completely work yet.**
+
 ## Dependencies
 * requests
 
