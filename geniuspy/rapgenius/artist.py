@@ -24,8 +24,6 @@ class Artist:
         elif name == 'description':
             self.description = ''.join(map(Client.parse_description, self.document["response"]["artist"]["description"]["dom"]["children"]))
             return self.description
-        elif name == 'songs':
-            return self.__songs()
 
     def response(self):
         return self.document["response"]["artist"]
@@ -33,7 +31,7 @@ class Artist:
     # You seem to be able to load 25 songs at a time for an artist. I haven't
     # found a way to vary the number you get back from the query, but you can
     # paginate through in blocks of 25 songs.
-    def __songs(self, options = {'page': 1}):
+    def songs(self, options = {'page': 1}):
         songs_url = "/artists/%d/songs/?page=%d" % (self.id, options["page"])
 
         response_songs = Client.get(songs_url)["response"]["songs"]
