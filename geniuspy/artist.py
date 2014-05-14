@@ -1,4 +1,4 @@
-from geniuspy.rapgenius.client import Client
+from geniuspy import Client
 
 
 class Artist:

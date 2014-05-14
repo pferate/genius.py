@@ -1,5 +1,5 @@
 import unittest
-from geniuspy.rapgenius.artist import Artist
+from geniuspy import Artist
 
 
 class TestArtist(unittest.TestCase):

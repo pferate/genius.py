@@ -1,8 +1,8 @@
 #import re
 import requests
 
-from geniuspy.rapgenius.meta import Meta
-from geniuspy.rapgenius.exceptions import Error, NotFoundError
+from geniuspy import __version__
+from geniuspy import Error, NotFoundError
 
 
 class Client:
@@ -10,7 +10,7 @@ class Client:
     HEADERS = {
         'Accept': ['application/json'],
         'Content-Type': 'application/json',
-        'User-Agent': "genius.py v%s" % Meta.VERSION
+        'User-Agent': "genius.py v%s" % __version__
     }
 
     @staticmethod
@@ -30,7 +30,7 @@ class Client:
     # into text, but some content may be lost.
     @staticmethod
     def parse_description(node):
-        if type(node) == str or type(node) == unicode:
+        if type(node) is str or type(node) is unicode:
             return node
         elif type(node) == list:
             node = map(Client.parse_description, node)

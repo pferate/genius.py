@@ -1,6 +1,6 @@
 import unittest
-from geniuspy.rapgenius.client import Client
-from geniuspy.rapgenius.exceptions import NotFoundError
+from geniuspy import Client
+from geniuspy import NotFoundError
 
 
 class TestClient(unittest.TestCase):
