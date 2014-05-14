@@ -1,8 +1,9 @@
-import re
+#import re
 import requests
 
 from geniuspy.rapgenius.meta import Meta
 from geniuspy.rapgenius.exceptions import Error, NotFoundError
+
 
 class Client:
     BASE_URL = 'https://api.rapgenius.com/'

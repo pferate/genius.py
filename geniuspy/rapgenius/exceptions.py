@@ -1,2 +1,6 @@
-class Error(Exception): pass
-class NotFoundError(Error): pass
+class Error(Exception):
+    pass
+
+
+class NotFoundError(Error):
+    pass
