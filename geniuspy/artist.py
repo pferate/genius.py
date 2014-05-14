@@ -34,8 +34,8 @@ class Artist:
     # You seem to be able to load 25 songs at a time for an artist. I haven't
     # found a way to vary the number you get back from the query, but you can
     # paginate through in blocks of 25 songs.
-    def songs(self, options={'page': 1}):
-        songs_url = "/artists/%d/songs/?page=%d" % (self.id, options["page"])
+    def songs(self, page=1):
+        songs_url = "/artists/%d/songs/?page=%d" % (self.id, page)
 
         response_songs = Client.get(songs_url)["response"]["songs"]
         for song in response_songs:

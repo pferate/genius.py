@@ -14,7 +14,9 @@ class Client:
     }
 
     @staticmethod
-    def get(url, params={}):
+    def get(url, params=None):
+        if params is None:
+            params = {}
         response = requests.get(Client.BASE_URL+url, params=params, headers=Client.HEADERS)
 
         if response.status_code != 200:
