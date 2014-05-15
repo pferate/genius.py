@@ -7,26 +7,43 @@ class Artist:
         found = Artist(artist_id)
         return found.document
 
-    def __init__(self, artist_id, **kwargs):
+    def __init__(self, artist_id=None, retrieve_info=True):
         self.id = artist_id
-        self.description = None
-        if 'name' in kwargs:
-            self.name = kwargs['name']
-        if 'type' in kwargs:
-            self.type = kwargs['type']
-        self.document = Client.get("artists/%d" % artist_id)
+        self.document = None
+        self.user = None
+        self.name = None
+        self.url = None
+        #self.tracking_paths = None
+        #self.description = None
+        self.image_url = None
+        # some currently unimplemented values from the API
+        # 1. tracking_paths
+        # 2. description
+        if retrieve_info:
+            self.retrieve_info()
 
     def __getattr__(self, name):
+        if self.document is None:
+            self.retrieve_info()
         if name == 'name':
-            return self.document["response"]["artist"]["name"]
+            return self.name
         elif name == 'image':
-            return self.document["response"]["artist"]["image_url"]
+            return self.image_url
         elif name == 'url':
-            return self.document["response"]["artist"]["url"]
-        elif name == 'description':
-            self.description = ''.join(map(Client.parse_description,
-                                           self.document["response"]["artist"]["description"]["dom"]["children"]))
-            return self.description
+            return self.url
+        #elif name == 'description':
+        #    self.description = ''.join(map(Client.parse_description,
+        #                                   self.document["response"]["artist"]["description"]["dom"]["children"]))
+        #    return self.description
+
+    def retrieve_info(self, force=True):
+        if self.document is None or force is True:
+            self.document = Client.get("artists/%d" % self.id)
+            self.user = self.document["response"]["artist"]["user"]
+            self.name = self.document["response"]["artist"]["name"]
+            self.url = self.document["response"]["artist"]["url"]
+            self.image_url = self.document["response"]["artist"]["image_url"]
+        return self
 
     def response(self):
         return self.document["response"]["artist"]
