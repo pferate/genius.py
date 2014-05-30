@@ -1,5 +1,5 @@
 import unittest
-from geniuspy import Artist
+from geniuspy import *
 
 
 class TestArtist(unittest.TestCase):
@@ -13,8 +13,8 @@ class TestArtist(unittest.TestCase):
         self.assertEqual(self.artist.name, 'Drake')
 
     def test_image(self):
-        self.assertEqual(self.artist.image,
-                         'http://images.rapgenius.com/2b3fa8326a5277fa31f2012a7b581e2e.500x319x11.gif')
+        self.assertEqual(self.artist.image_url,
+                         'http://images.rapgenius.com/a4a9dec18e3c348f0a13422ca9bda543.449x575x1.jpg')
 
     def test_description(self):
         self.assertTrue('Drake is part of a generation of new rappers' in self.artist.description)
